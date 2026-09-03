@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fútbol Party ⚽</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            ⚽ FÚTBOL PARTY
+        </div>
+        <nav>
+            <a href="#juegos">Juegos</a>
+            <a href="#como-jugar">Cómo jugar</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge">
+                    ⚡ MINIJUEGOS DE FÚTBOL
+                </div>
+                <h1>
+                    ¿Quién es el <span>mejor?</span>
+                </h1>
+                <p>
+                    Competí contra tus amigos en diferentes minijuegos de fútbol.
+                </p>
+                <div class="hero-buttons">
+                    <button type="button" class="primary-btn" onclick="crearSala()">
+                        ⚽ Crear partida
+                    </button>
+                    <button type="button" class="secondary-btn" onclick="mostrarUnirse()">
+                        🔗 Unirse
+                    </button>
+                </div>
+            </div>
+            <div class="hero-ball">
+                ⚽
+            </div>
+        </section>
+
+        <!-- JUEGOS -->
+        <section id="juegos" class="games-section">
+            <div class="section-title">
+                <span>🎮</span>
+                <div>
+                    <h2>Minijuegos</h2>
+                    <p>Elegí tu desafío favorito.</p>
+                </div>
+            </div>
+
+            <div class="games-grid">
+                <article class="game-card" onclick="seleccionarJuego('impostor')">
+                    <div class="game-icon red">🕵️</div>
+                    <span class="game-number">JUEGO 01</span>
+                    <h3>Impostor</h3>
+                    <p>Descubrí quién recibió un jugador diferente.</p>
+                    <div class="game-footer">👥 3 jugadores</div>
+                </article>
+
+                <article class="game-card" onclick="seleccionarJuego('adivina')">
+                    <div class="game-icon blue">🧠</div>
+                    <span class="game-number">JUEGO 02</span>
+                    <h3>Adivina el jugador</h3>
+                    <p>Descubrí al futbolista usando pistas.</p>
+                    <div class="game-footer">👥 2-3 jugadores</div>
+                </article>
+
+                <article class="game-card" onclick="seleccionarJuego('estadisticas')">
+                    <div class="game-icon cyan">📊</div>
+                    <span class="game-number">JUEGO 03</span>
+                    <h3>Duelo de estadísticas</h3>
+                    <p>Elegí quién tiene mejores estadísticas.</p>
+                    <div class="game-footer">👥 2 jugadores</div>
+                </article>
+
+                <article class="game-card" onclick="seleccionarJuego('oculto')">
+                    <div class="game-icon purple">🔍</div>
+                    <span class="game-number">JUEGO 04</span>
+                    <h3>Futbolista oculto</h3>
+                    <p>Descubrí al jugador por su trayectoria.</p>
+                    <div class="game-footer">👥 2-3 jugadores</div>
+                </article>
+
+                <article class="game-card" onclick="seleccionarJuego('mayor-menor')">
+                    <div class="game-icon orange">📈</div>
+                    <span class="game-number">JUEGO 05</span>
+                    <h3>Mayor o menor</h3>
+                    <p>¿El siguiente jugador tendrá más o menos?</p>
+                    <div class="game-footer">👥 2 jugadores</div>
+                </article>
+
+                <article class="game-card" onclick="seleccionarJuego('draft')">
+                    <div class="game-icon yellow">💰</div>
+                    <span class="game-number">JUEGO 06</span>
+                    <h3>Draft de fútbol</h3>
+                    <p>Armá el mejor equipo posible.</p>
+                    <div class="game-footer">👥 2 jugadores</div>
+                </article>
+
+                <article class="game-card" onclick="seleccionarJuego('diez-segundos')">
+                    <div class="game-icon pink">⏱️</div>
+                    <span class="game-number">JUEGO 07</span>
+                    <h3>10 segundos</h3>
+                    <p>Nombrá 3 jugadores antes del tiempo.</p>
+                    <div class="game-footer">👥 2-3 jugadores</div>
+                </article>
+
+                <article class="game-card" onclick="seleccionarJuego('carrera')">
+                    <div class="game-icon green">🔗</div>
+                    <span class="game-number">JUEGO 08</span>
+                    <h3>Carrera de futbolistas</h3>
+                    <p>Conectá dos clubes con futbolistas.</p>
+                    <div class="game-footer">👥 2 jugadores</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- COMO JUGAR -->
+        <section id="como-jugar" class="how-section">
+            <div class="section-title">
+                <span>🏆</span>
+                <div>
+                    <h2>¿Cómo se juega?</h2>
+                    <p>Es muy fácil.</p>
+                </div>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <strong>01</strong>
+                    <h3>Creá una sala</h3>
+                    <p>Generá un código para invitar a tus amigos.</p>
+                </div>
+                <div class="step">
+                    <strong>02</strong>
+                    <h3>Compartí el código</h3>
+                    <p>Tus amigos ingresan usando ese código.</p>
+                </div>
+                <div class="step">
+                    <strong>03</strong>
+                    <h3>Elegí el juego</h3>
+                    <p>El creador selecciona el minijuego.</p>
+                </div>
+                <div class="step">
+                    <strong>04</strong>
+                    <h3>¡A jugar!</h3>
+                    <p>Competí y conseguí la mayor cantidad de puntos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL -->
+    <section id="join-section" class="modal hidden">
+        <div class="modal-card">
+            <button type="button" class="close-btn" onclick="cerrarUnirse()">✕</button>
+            <div id="modal-content"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo">⚽ FÚTBOL PARTY</div>
+        <p>Minijuegos de fútbol para jugar con amigos.</p>
+        <span>© 2026 Fútbol Party</span>
+    </footer>
+
+    <!-- SOCKET.IO & SCRIPT -->
+    <script src="/socket.io/socket.io.js"></script>
+     <script src="scrip.js"></script>
+</body>
+
+</html>

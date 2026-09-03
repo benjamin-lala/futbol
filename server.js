@@ -7,8 +7,13 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Servir archivos estáticos desde la carpeta actual
-app.use(express.static(__dirname));
+// Servir archivos estáticos de la carpeta principal
+app.use(express.static(path.join(__dirname)));
+
+// RUTA PRINCIPAL: Enviar siempre index.html (Soluciona el error Not Found)
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // Estructura de datos para almacenar las salas de juego
 const salas = {};
@@ -111,7 +116,6 @@ io.on("connection", (socket) => {
             return;
         }
 
-        // Selección aleatoria del futbolista y del impostor
         const palabraSecreta = futbolistas[Math.floor(Math.random() * futbolistas.length)];
         const indiceImpostor = Math.floor(Math.random() * sala.jugadores.length);
 
@@ -153,13 +157,10 @@ io.on("connection", (socket) => {
 });
 
 // ==========================================
-// INICIO DEL SERVIDOR (COMPATIBLE CON RENDER)
+// INICIO DEL SERVIDOR
 // ==========================================
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
-    console.log(`================================`);
-    console.log(`⚽ FÚTBOL PARTY`);
     console.log(`Servidor corriendo en el puerto ${PORT}`);
-    console.log(`================================`);
 });

@@ -10,7 +10,7 @@ const io = new Server(server);
 // Servir archivos estáticos de la carpeta principal
 app.use(express.static(path.join(__dirname)));
 
-// RUTA PRINCIPAL: Enviar siempre index.html (Soluciona el error Not Found)
+// RUTA PRINCIPAL: Enviar siempre index.html
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -18,8 +18,9 @@ app.get("*", (req, res) => {
 // Estructura de datos para almacenar las salas de juego
 const salas = {};
 
-// Lista de futbolistas para el minijuego "Impostor"
+// Lista ampliada de futbolistas (Actuales e Históricos / Leyendas)
 const futbolistas = [
+    // --- ACTUALES ---
     "Lionel Messi",
     "Cristiano Ronaldo",
     "Kylian Mbappé",
@@ -35,7 +36,41 @@ const futbolistas = [
     "Robert Lewandowski",
     "Antoine Griezmann",
     "Pedri",
-    "Lamine Yamal"
+    "Lamine Yamal",
+    "Mohamed Salah",
+    "Harry Kane",
+    "Rodri",
+    "Federico Valverde",
+    "Toni Kroos",
+    "Thibaut Courtois",
+    "Alexis Mac Allister",
+    "Enzo Fernández",
+
+    // --- HISTÓRICOS / LEYENDAS ---
+    "Diego Maradona",
+    "Pelé",
+    "Ronaldinho",
+    "Zinedine Zidane",
+    "Ronaldo Nazário",
+    "Johan Cruyff",
+    "Franz Beckenbauer",
+    "Michel Platini",
+    "Marco van Basten",
+    "Thierry Henry",
+    "Andrés Iniesta",
+    "Xavi Hernández",
+    "Andrea Pirlo",
+    "Kaká",
+    "Gianluigi Buffon",
+    "Iker Casillas",
+    "Paolo Maldini",
+    "Roberto Carlos",
+    "Carles Puyol",
+    "Gabriel Batistuta",
+    "Juan Román Riquelme",
+    "Dennis Bergkamp",
+    "Zlatan Ibrahimović",
+    "Steven Gerrard"
 ];
 
 // Generador de códigos aleatorios de 6 caracteres para las salas
@@ -101,7 +136,7 @@ io.on("connection", (socket) => {
         console.log(`${nombre} se unió a la sala ${codigo}`);
     });
 
-    // 3. INICIAR MINIJUEGO IMPOSTOR
+    // 3. INICIAR MINIJUEGO IMPOSTOR (INICIO LIBRE Y SELECCIÓN ALEATORIA)
     socket.on("iniciarImpostor", (datos) => {
         const codigo = datos.codigo;
         const sala = salas[codigo];
@@ -111,11 +146,12 @@ io.on("connection", (socket) => {
             return;
         }
 
-        if (sala.jugadores.length < 3) {
-            socket.emit("errorPartida", "Se necesitan al menos 3 jugadores para jugar al Impostor.");
+        if (sala.jugadores.length < 1) {
+            socket.emit("errorPartida", "No hay jugadores en la sala.");
             return;
         }
 
+        // Selección aleatoria del futbolista y del impostor entre los conectados
         const palabraSecreta = futbolistas[Math.floor(Math.random() * futbolistas.length)];
         const indiceImpostor = Math.floor(Math.random() * sala.jugadores.length);
 
